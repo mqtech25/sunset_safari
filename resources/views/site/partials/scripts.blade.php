@@ -15,15 +15,7 @@
 <script src="{{ asset('frontend/js/functions.js') }}" type="text/javascript"></script>
 <!-- SPECIFIC SCRIPTS -->
 <script src="{{ asset('frontend/js/video_header.js')}}"></script>
-<script>
-    'use strict';
-    HeaderVideo.init({
-        container: $('.header-video'),
-        header: $('.header-video--media'),
-        videoTrigger: $("#video-trigger"),
-        autoPlayVideo: true
-    });
-</script>
+
 @stack('custom-scripts')
 {!! config('settings.google_analytics') !!}
 {!! config('settings.facebook_pixels') !!}

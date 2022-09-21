@@ -396,6 +396,23 @@ a#phone_top:before {
 	top: -2px;
 }
 
+a#mail_top {
+	color: #fff;
+	position: relative;
+	margin-left: 15px;
+	padding-left: 22px;
+	font-weight: 600;
+}
+
+a#mail_top:before {
+	font-family: "ElegantIcons";
+	content: "\e076";
+	font-size: 14px;
+	position: absolute;
+	left: 0;
+	top: -2px;
+}
+
 #opening {
 	display: inline-block;
 	margin-left: 15px;

@@ -388,7 +388,16 @@
 	</section>
 	<!-- End section -->
 
-	
-
-
 @stop
+
+@push('custom-scripts')
+<script>
+    'use strict';
+    HeaderVideo.init({
+        container: $('.header-video'),
+        header: $('.header-video--media'),
+        videoTrigger: $("#video-trigger"),
+        autoPlayVideo: true
+    });
+</script>
+@endpush
