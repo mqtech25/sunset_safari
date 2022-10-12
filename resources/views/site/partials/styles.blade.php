@@ -1,10 +1,10 @@
 	
 	
-	<link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('frontend/images/apple-touch-icon-57x57-precomposed.png') }}">
+	{{-- <link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon"> --}}
+	{{-- <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('frontend/images/apple-touch-icon-57x57-precomposed.png') }}">
 	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('frontend/images/apple-touch-icon-72x72-precomposed.png') }}">
 	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('frontend/images/apple-touch-icon-114x114-precomposed.png') }}">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('frontend/images/apple-touch-icon-144x144-precomposed.png') }}">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('frontend/images/apple-touch-icon-144x144-precomposed.png') }}"> --}}
 	<!-- GOOGLE WEB FONT -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Satisfy" rel="stylesheet">
 	{{-- Animate css --}}
@@ -21,6 +21,11 @@
 	<link href="{{ asset('frontend/css/icon_fonts/css/all_icons.min.css') }}" rel="stylesheet" type="text/css"/>
 	{{-- custom css --}}
 	<link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+	<style>
+		#logo_home h1 a {
+		background-image: url({{url('/storage//'.config('settings.site_logo'))}});
+		}
+	</style>
 	{{-- Modernizr js --}}
 	<script src="{{ asset('frontend/js/modernizr.js') }}" type="text/javascript"></script>
 		<!--[if lt IE 9]>

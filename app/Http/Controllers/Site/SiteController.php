@@ -40,6 +40,10 @@ class SiteController extends Controller
         \Log::info("Req=SiteController@homePage called");
 		return view('site.pages.home');
     }
+    public function offerDetail(){
+        \Log::info("Req=SiteController@offerDetail called");
+		return view('site.pages.viewDetails');
+    }
     public function blogPage(){
         \Log::info("Req=SiteController@blogPage called");
         if(config('settings.blog_enabled') == 0)
