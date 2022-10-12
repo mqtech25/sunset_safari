@@ -38,7 +38,7 @@
 							<sup>$</sup>450
 						</div>
 						<div class="img_container">
-							<a href="detail-page.html">
+							<a href="{{route('detail')}}">
 								<img src="{{asset('frontend/images/tour_list_1.jpg')}}" width="800" height="533" class="img-responsive" alt="">
 								<div class="short_info">
 									<h3>Las Vegas</h3>
