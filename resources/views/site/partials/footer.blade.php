@@ -5,8 +5,8 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
 					<h3>Need help?</h3>
-					<a href="tel://004542344599" id="phone">+45 423 445 99</a>
-					<a href="mailto:help@citytours.com" id="email_footer">help@bestours.com</a>
+					<a href="tel://{{config('settings.default_phone_number')}}" id="phone">{{config('settings.default_phone_number')}}</a>
+					<a href="mailto:{{config('settings.default_email_address')}}" id="email_footer">{{config('settings.default_email_address')}} </a>
 				</div>
 				<div class="col-md-2 col-sm-3">
 					<h3>About</h3>
@@ -58,7 +58,7 @@
 							<option value="Russian">Russian</option>
 						</select>
 					</div>
-					<span id="copy">© BestTours 2021 - All rights reserved</span>
+					<span id="copy">© {{ config('settings.site_name') }} 2022 - All rights reserved</span>
 				</div>
 				<div class="col-sm-4" id="social_footer">
 					<ul>

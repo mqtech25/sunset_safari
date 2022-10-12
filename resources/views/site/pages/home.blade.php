@@ -290,7 +290,7 @@
 
 	<section class="container margin_60">
 		<div class="main_title">
-			<h3>Why choose BesTours</h3>
+			<h3>Why choose {{ config('settings.site_name') }}	</h3>
 			<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
 		</div>
 		<div class="row">

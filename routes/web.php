@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 require 'admin.php';
 Route::get('/', 'Site\SiteController@homePage')->name('home');
+Route::get('/view_detail', 'Site\SiteController@offerDetail')->name('detail');
 
 // Route::get('/', 'Site\SiteController@homePage')->name('home');
 Route::get('/blog', 'Site\SiteController@blogPage')->name('blog');
@@ -89,10 +90,3 @@ Route::get('/forgot-password', 'Auth\ResetPasswordController@forgotPasswordShow'
 Route::post('/forgot-password', 'Auth\ResetPasswordController@sendResetPasswordLink')->middleware(['guest'])->name('password.email');
 Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@showResetForm')->middleware(['guest'])->name('password.reset');
 Route::post('/reset-password', 'Auth\ResetPasswordController@resetPassword')->middleware(['guest'])->name('password.update');
-
-
-
-
-
-
-
