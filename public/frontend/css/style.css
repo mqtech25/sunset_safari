@@ -1228,7 +1228,7 @@ a#phone_2 {
     border: 3px double #ededed;
     border-radius: 45px;
     color: #589442;
-    display: inline-block;
+    float: left;
     height: 45px;
     font-size: 20px;
     line-height: 40px;

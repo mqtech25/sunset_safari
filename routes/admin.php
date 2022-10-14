@@ -17,7 +17,27 @@ Route::group(['prefix'  =>  'admin'], function () {
 
 		Route::get('/settings', 'Admin\SettingController@index')->name('admin.settings');
 		Route::post('/settings', 'Admin\SettingController@update')->name('admin.settings.update');
+		
+		Route::group(['prefix'  =>   'createmenu'], function() {
 
+			Route::get('/', 'Admin\CreatemenuController@index')->name('admin.createmenu.index');
+			Route::get('/create', 'Admin\CreatemenuController@create')->name('admin.createmenu.create');
+			// Route::post('/store', 'Admin\CategoryController@store')->name('admin.categories.store');
+			// Route::get('/{id}/edit', 'Admin\CategoryController@edit')->name('admin.categories.edit');
+			// Route::post('/update', 'Admin\CategoryController@update')->name('admin.categories.update');
+			// Route::get('/{id}/delete', 'Admin\CategoryController@delete')->name('admin.categories.delete');
+
+		});
+		Route::group(['prefix'  =>   'menuitems'], function() {
+
+			Route::get('/', 'Admin\MenuitemController@index')->name('admin.menuitems.index');
+			Route::get('/create', 'Admin\MenuitemController@create')->name('admin.menuitems.create');
+			// Route::post('/store', 'Admin\CategoryController@store')->name('admin.categories.store');
+			// Route::get('/{id}/edit', 'Admin\CategoryController@edit')->name('admin.categories.edit');
+			// Route::post('/update', 'Admin\CategoryController@update')->name('admin.categories.update');
+			// Route::get('/{id}/delete', 'Admin\CategoryController@delete')->name('admin.categories.delete');
+
+		});
 		Route::group(['prefix'  =>   'categories'], function() {
 
 			Route::get('/', 'Admin\CategoryController@index')->name('admin.categories.index');

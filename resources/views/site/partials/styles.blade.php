@@ -21,6 +21,7 @@
 	<link href="{{ asset('frontend/css/icon_fonts/css/all_icons.min.css') }}" rel="stylesheet" type="text/css"/>
 	{{-- custom css --}}
 	<link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+	@stack('extra-style')
 	<style>
 		#logo_home h1 a {
 		background-image: url({{url('/storage//'.config('settings.site_logo'))}});
