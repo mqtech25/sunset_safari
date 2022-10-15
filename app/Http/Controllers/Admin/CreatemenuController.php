@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
-class CreatemenuController extends Controller
+class CreatemenuController extends BaseController
 {
     //
     	public function index(){
