@@ -1,11 +1,11 @@
 @extends('admin.app')
-@section('title')  @endsection
+@section('title') {{ $pageTitle}} @endsection
 @section('content')
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-tags mr-2"></i>Menu</h1>
-		<p>  </p>
+		<h1><i class="fa fa-tags mr-2"></i>{{ $pageTitle}}</h1>
+		<p> {{ $subTitle }} </p>
 	</div>
 	<a href="{{ route('admin.createmenu.create') }}" class="btn btn-primary pull-right">Create New Menu</a>
 </div>
@@ -30,7 +30,30 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						@foreach ($menu as $menus)
+								<tr>
+									<td class="text-center">{{$menus->id}}</td>
+									<td class="text-center">{{$menus->title}}</td>
+									<td class="text-center">{{$menus->status}}</td>
+									<td class="text-center">{{$menus->location}}</td>
+									<td class="text-center">
+										@if($menus->items > 0)
+										<span class="badge badge-success">{{$menus->items}}</span>
+										@else
+										<span class="badge badge-danger">No</span>
+										@endif
+									</td>
+									<td class="text-center">{{$menus->created_at}}</td>
+									<td class="text-center">{{$menus->updated_at}}</td>
+									<td class="text-center">
+										{{-- <div class="btn-group" role="group" aria-label="Second group">
+											<a href="{{ route('admin.createmenu.edit', $menus->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+											<a href="{{ route('admin.createmenu.delete', $menus->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+										</div> --}}
+									</td>
+								</tr>
+						@endforeach
+						{{-- <tr>
 							<td class="text-center">2</td>
 							<td class="text-center">Primary Menu</td>
 							<td class="text-center">Published</td>
@@ -52,7 +75,7 @@
 									<a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>
-						</tr>
+						</tr> --}}
 					</tbody>
 				</table>
 			</div>

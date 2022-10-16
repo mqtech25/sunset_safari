@@ -1,9 +1,9 @@
 @extends('admin.app')
-@section('title') @endsection
+@section('title') {{ $pageTitle}} @endsection
 @section('content')
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-tags mr-2"></i> Create Menu</h1>
+		<h1><i class="fa fa-tags mr-2"></i> {{ $pageTitle }}</h1>
 	</div>
 </div>
 @include('admin.partials.flash')
@@ -12,7 +12,7 @@
 <div class="row">
 		<div class="col-md-8 mx-auto">
 			<div class="tile">
-				<h3 class="tile-title">Menu Information</h3>
+				<h3 class="tile-title">{{ $subTitle }}</h3>
 				<hr>
 
 					<div class="tile-body">
