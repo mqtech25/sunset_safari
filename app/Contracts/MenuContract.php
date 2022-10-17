@@ -33,7 +33,7 @@ interface MenuContract{
 	/**
 	* @param int $id
 	*/
-	public function deleteCategory($id);
+	public function deleteMenu($id);
 
 	/**
 	* @return mixed

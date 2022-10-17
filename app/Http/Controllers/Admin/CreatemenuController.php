@@ -111,4 +111,18 @@ class CreatemenuController extends BaseController
 
 		return $this->responseRedirect('admin.createmenu.index', 'Menu updated successfully', 'success');
 	}
+	/**
+	* @param int $id
+	* @return \Illuminate\Contracts\View\Factory|\Illumniate\View\View
+	*/
+	// delete Menu data
+	public function delete($id){
+		\Log::info("Req=CreatemenuController@delete called");
+		$deleteMenu = $this->menuRepository->deleteMenu($id);
+		if(!$deleteMenu){
+			return $this->responseRedirectBack('Error occurred while deleting menu Or deleting parent menu is not allowed', 'error', true, true);
+		}
+
+		return $this->responseRedirect('admin.createmenu.index', 'Menu deleted successfully', 'success');
+	}
 }

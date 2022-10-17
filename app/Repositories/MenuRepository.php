@@ -90,21 +90,18 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @param int $id
 	* @return bool|mixed
 	*/
-	public function deleteCategory($id){
-		\Log::info("Req=CategoryRepository@deleteCategory Called");
-		$category = $this->findCategoryById($id);
-		if($category->children->count()>0)
-		{
-			return false;
-		}
-		if($category->name != null){
-			$this->deleteOne($category->image);
-		}
-		$updateProductCategory = DB::table('product_categories')->where('category_id', $category->id)->update(['category_id'=>1]);
-		$category->delete();
+	public function deleteMenu($id){
+		\Log::info("Req=MenuRepository@deleteMenu Called");
+		$menu = $this->findMenuById($id);
+		// if($menu->children->count()>0)
+		// {
+		// 	return false;
+		// }
+		// $updateMenu = DB::table('product_categories')->where('category_id', $menu->id)->update(['category_id'=>1]);
+		$menu->delete();
 
 
-		return $category;
+		return $menu;
 	}
 
 

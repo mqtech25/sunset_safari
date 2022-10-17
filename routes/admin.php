@@ -25,9 +25,9 @@ Route::group(['prefix'  =>  'admin'], function () {
 			Route::post('/store', 'Admin\CreatemenuController@store')->name('admin.createmenu.store');
 			Route::get('/{id}/edit', 'Admin\CreatemenuController@edit')->name('admin.createmenu.edit');
 			Route::post('/update', 'Admin\CreatemenuController@update')->name('admin.createmenu.update');
-			// Route::get('/{id}/delete', 'Admin\CategoryController@delete')->name('admin.categories.delete');
-
+			Route::get('/{id}/delete', 'Admin\CreatemenuController@delete')->name('admin.createmenu.delete');
 		});
+		
 		Route::group(['prefix'  =>   'menuitems'], function() {
 
 			Route::get('/', 'Admin\MenuitemController@index')->name('admin.menuitems.index');
