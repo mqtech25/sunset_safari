@@ -25,7 +25,7 @@
 										@error('title') {{ $message }} @enderror
 									</div>
 									<div class="form-row">
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="form-group">
 												<label for="status" class="control-label"> Status <span class="m-l-5 text-danger"> *</span></label>
 												<select name="status" id="status" class="form-control custom-select mt-15 @error('status') is-invalid @enderror">
@@ -36,7 +36,7 @@
 												@error('status') {{ $message }} @enderror
 											</div>
 										</div>
-										<div class="col-md-6">
+										{{-- <div class="col-md-6">
 											<div class="form-group">
 												<label for="location" class="control-label"> Location <span class="m-l-5 text-danger"> *</span></label>
 												<select name="location" id="location" class="form-control custom-select mt-15 @error('location') is-invalid @enderror">
@@ -46,8 +46,28 @@
 												</select>
 												@error('location') {{ $message }} @enderror
 											</div>
-										</div>
+										</div> --}}
 									</div>
+									<label for="location" class="control-label"> Location <span class="m-l-5 text-danger"> *</span></label>
+									<div class="form-row">
+										@foreach ($locations as $location)
+										<div class="form-group mr-2 mb-0">
+											<div class="form-check">
+												<label for="header" class="form-check-label">
+													<input type="checkbox" class="form-check-input" id="header" name="location[]" value="header" {{($location =='header')?"checked":""}} >Show in Header
+												</label>
+											</div>
+										</div>
+										<div class="form-group  mb-0">
+											<div class="form-check">
+												<label for="footer" class="form-check-label">
+													<input type="checkbox" class="form-check-input" id="footer" name="location[]" value="footer" {{($location =='footer')?"checked":""}}>Show in Footer
+												</label>
+											</div>
+										</div>
+										@endforeach
+									</div>
+									<p class="text-danger">@error('location') {{ $message }} @enderror</p>
 								</div>
 						</div>
 						<button class="btn btn-primary float-right"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update</button>

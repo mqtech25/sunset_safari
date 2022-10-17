@@ -64,10 +64,10 @@ class CreatemenuController extends BaseController
 			$request,[
 				'title' => 'required|max:191',
 				'status'=> 'required|not_in:0',
-				'location'=>'required|not_in:0',
-
+				'location' => ['required', 'array'],
 			]);
 		$params =$request->except('_token');
+	
 		$menu= $this->menuRepository->createMenu($params);
 		if (!$menu) {
 			return $this->responseRedirectBack('Error occurred while creating menu or Menu already exists','error',true,true);
@@ -84,8 +84,9 @@ class CreatemenuController extends BaseController
 		\Log::info("Req=CreatemenuController@edit called");
 		$targetMenu=$this->menuRepository->findMenuById($id);
 		// $menu = $this->menuRepository->listMenu();
+		$locations=json_decode($targetMenu->location);
 		$this->setPageTitle('Menu','Edit Menu :'.$targetMenu->title);
-		return view('admin.createmenu.edit',compact('targetMenu'));
+		return view('admin.createmenu.edit',compact('targetMenu','locations'));
 	}
 	/**
 	* @param Request $request
@@ -100,7 +101,7 @@ class CreatemenuController extends BaseController
 			$request,[
 				'title' =>'required|max:191',
 				'status'=>'required|not_in:0',
-				'location'=>'required|not_in:0',
+				'location' => ['required', 'array'],
 			]
 			);
 		$params=$request->except("_token");

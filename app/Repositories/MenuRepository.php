@@ -59,12 +59,18 @@ class MenuRepository extends BaseRepository implements MenuContract{
 		
 		try{
 			$collection = collect($params);
-			$menu = new Menu($collection->all());
-			$title=$menu->title;
-			$alreadyExists = Menu::where('title', $title)->first();
+			$location = $collection['location'];
+			$location = json_encode($location);
+			$merge = $collection->merge(compact('location'));
+			$menu = new Menu($merge->all());
+			$alreadyExists = Menu::where('title', $menu->title)->first();
+			// $menu = new Menu($collection->all());
+			// $title=$title->title;
+			// $alreadyExists = Menu::where('title', $title)->first();
 			if($alreadyExists != null){
 				return false;
 			}
+
 			$menu->save();
 			return $menu;
 		}catch(QueryException $exception){
@@ -82,7 +88,10 @@ class MenuRepository extends BaseRepository implements MenuContract{
 		$menu = $this->findMenuById($params['id']);
 
 		$collection = collect($params)->except('_token');
-		$menu->update($collection->all());
+		$location = $collection['location'];
+		$location = json_encode($location);
+		$merge = $collection->merge(compact('location'));
+		$menu->update($merge->all());
 		return $menu;
 	}
 
