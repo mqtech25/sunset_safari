@@ -18,17 +18,17 @@ interface MenuContract{
 	* @param int $id
 	* @return mixed
 	*/
-	public function findCategoryById(int $id);
+	public function findMenuById(int $id);
 
 	/**
 	* @param array $params
 	*/
-	public function createCategory(array $params);
+	public function createMenu(array $params);
 
 	/**
 	* @param array $params
 	*/
-	public function updateCategory(array $params);
+	public function updateMenu(array $params);
 	
 	/**
 	* @param int $id

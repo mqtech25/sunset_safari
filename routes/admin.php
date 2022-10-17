@@ -22,9 +22,9 @@ Route::group(['prefix'  =>  'admin'], function () {
 
 			Route::get('/', 'Admin\CreatemenuController@index')->name('admin.createmenu.index');
 			Route::get('/create', 'Admin\CreatemenuController@create')->name('admin.createmenu.create');
-			// Route::post('/store', 'Admin\CategoryController@store')->name('admin.categories.store');
-			// Route::get('/{id}/edit', 'Admin\CategoryController@edit')->name('admin.categories.edit');
-			// Route::post('/update', 'Admin\CategoryController@update')->name('admin.categories.update');
+			Route::post('/store', 'Admin\CreatemenuController@store')->name('admin.createmenu.store');
+			Route::get('/{id}/edit', 'Admin\CreatemenuController@edit')->name('admin.createmenu.edit');
+			Route::post('/update', 'Admin\CreatemenuController@update')->name('admin.createmenu.update');
 			// Route::get('/{id}/delete', 'Admin\CategoryController@delete')->name('admin.categories.delete');
 
 		});

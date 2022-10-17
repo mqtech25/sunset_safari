@@ -41,8 +41,8 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @return mixed
 	* @throws ModelNotFoundException
 	*/
-	public function findCategoryById(int $id){
-		\Log::info("Req=Repositories/CategoryRepository@findCategoryById Called");
+	public function findMenuById(int $id){
+		\Log::info("Req=Repositories/MenuRepository@findMenuById Called");
 		try{
 			return $this->findOneOrFail($id);
 		}catch (ModelNotFoundException $e){
@@ -52,29 +52,21 @@ class MenuRepository extends BaseRepository implements MenuContract{
 
 	/**
 	* @param array $params
-	* @return Category|mixed
+	* @return Menu|mixed
 	*/
-	public function createCategory(array $params){
-		\Log::info("Req=Repositories/CategoryRepository@createCategory Called");
+	public function createMenu(array $params){
+		\Log::info("Req=Repositories/MenuRepository@createMenu Called");
+		
 		try{
 			$collection = collect($params);
-			$image = null;
-
-			if($collection->has('image') && ($params['image'] instanceof UploadedFile)){
-				$image = $this->uploadOne($params['image'], 'categories');
-			}
-
-			$featured = $collection->has('featured') ? 1 : 0;
-			$menu = $collection->has('menu') ? 1 : 0;
-
-			$merge = $collection->merge(compact('menu', 'image', 'featured'));
-			$category = new Category($merge->all());
-			$alreadyExists = Category::where('slug', $category->slug)->first();
+			$menu = new Menu($collection->all());
+			$title=$menu->title;
+			$alreadyExists = Menu::where('title', $title)->first();
 			if($alreadyExists != null){
 				return false;
 			}
-			$category->save();
-			return $category;
+			$menu->save();
+			return $menu;
 		}catch(QueryException $exception){
 			throw new InvalidArgumentException($exception->getMessage());
 			
@@ -85,26 +77,13 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @param array $params
 	* @return mixed
 	*/
-	public function updateCategory(array $params){
-		\Log::info("Req=Repositories/CategoryRepository@updateCategory Called");
-		$category = $this->findCategoryById($params['id']);
+	public function updateMenu(array $params){
+		\Log::info("Req=Repositories/MenuRepository@updateMenu Called");
+		$menu = $this->findMenuById($params['id']);
 
 		$collection = collect($params)->except('_token');
-		$image = $category->image;
-
-		if($collection->has('image') && ($params['image'] instanceof UploadedFile)){
-			if($category->image != null){
-				$this->deleteOne($category->image);
-			}
-			$image = $this->uploadOne($params['image'], 'categories');
-		}
-
-		$featured = $collection->has('featured') ? 1 : 0;
-		$menu = $collection->has('menu') ? 1 : 0;
-		$merge = $collection->merge(compact('menu', 'image', 'featured'));
-		$category->update($merge->all());
-
-		return $category;
+		$menu->update($collection->all());
+		return $menu;
 	}
 
 	/**

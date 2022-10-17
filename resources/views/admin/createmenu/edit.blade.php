@@ -9,94 +9,51 @@
 @include('admin.partials.flash')
 <div class="row">
 	<div class="col-md-8 mx-auto">
-		<div class="tile">
-			<h3 class="tile-title">{{$subTitle}}</h3>
-			<form action="{{ route('admin.categories.update') }}" method="POST" role="form" enctype="multipart/form-data">
-				@csrf
-				<div class="title-body">
-					<div class="form-group">
-						<label for="name" class="control-label">Name</label>
-						<input type="text" name="name" class="form-control @error('name') is-invalid @enderror }}" value="{{ old('name', $targetCategory->name) }}">
-						<input type="hidden" name="id", value="{{ $targetCategory->id }}">
-						@error('name') 
-						<div class="invalid-feedback">
-							<strong> {{ $message }} </strong>
-						</div>
-						@enderror
-					</div>
-					<div class="form-group">
-						<label for="description" class="control-label"> Description</label>
-						<textarea name="description" id="description" cols="30" rows="4" class="form-control">{{ old('description', $targetCategory->description)}}</textarea>
-					</div>
-					{{-- @php dd($categories) @endphp --}}
-					<div class="form-group">
-						<label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
-						<select name="parent_id" id="parent" class="form-control custom-select mt-15 @error('parent_id') is-invalid @enderror">
-							<option value="0">Select a parent category</option>
-							@foreach($categories as $key => $category)
-							
-							@if($targetCategory->parent_id == $category->id)
-							<option value="{{ $category->id }}" selected=""> {{ $category->name}}</option>
-							@else
-							<option value="{{ $category->id }}"> {{ $category->name }}</option>
-							@endif
-							@endforeach
-						</select>
-						@error('parent_id')
-						<div class="invalid-feedback">
-							<strong> {{ $message }}</strong>
-						</div>
-						@enderror
-					</div>
-					<div class="form-group">
-						<div class="form-check">
-							<label for="featured" class="form-check-label">
-								<input type="checkbox" class="form-check-input" name="featured" {{ $targetCategory->featured == 1 ? 'checked' : '' }} >
-								Featured Category
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-check">
-							<label for="menu" class="form-check-label">
-								<input type="checkbox" class="form-check-input" name="menu" {{ $targetCategory->menu == 1 ? 'checked' : '' }}>
-								Show in Menu
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-2">
-								@if($targetCategory->image != null)
-								<figure class="mt-2" style="width: 80px; height: auto;">
-									<img  class="img-fluid" src="{{ asset('/storage/'.$targetCategory->image) }}" alt="{{ $targetCategory->name }}">
-								</figure>
-								@endif
-							</div>
-							<div class="col-md-10">
-								<label for="" class="control-label">Category Image</label>
-								<input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-								@error('image')
-								<div class="invalid-feedback">
-									<strong> {{ $message }} </strong>
+		<form action="{{ route('admin.createmenu.update') }}" method="POST" role="form" enctype="multipart/form-data">
+			@csrf
+			<div class="row">
+					<div class="col-md-8 mx-auto">
+						<div class="tile">
+							<h3 class="tile-title">{{ $subTitle }}</h3>
+							<hr>
+
+								<div class="tile-body">
+									<div class="form-group">
+										<label class="control-label" for="title"> Title <span class="m-l-5 text-danger"> *</span></label>
+										<input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title', $targetMenu->title) }}" placeholder="Enter Menu Title"/>
+										<input type="hidden" name="id", value="{{ $targetMenu->id }}">										
+										@error('title') {{ $message }} @enderror
+									</div>
+									<div class="form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="status" class="control-label"> Status <span class="m-l-5 text-danger"> *</span></label>
+												<select name="status" id="status" class="form-control custom-select mt-15 @error('status') is-invalid @enderror">
+													<option value="0">Select a Status</option>
+													<option value="published" {{($targetMenu->status == "published")?'selected':''}}>Published</option>
+													<option value="draft" {{($targetMenu->status == "draft")?'selected':''}}>Draft</option>
+												</select>
+												@error('status') {{ $message }} @enderror
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="location" class="control-label"> Location <span class="m-l-5 text-danger"> *</span></label>
+												<select name="location" id="location" class="form-control custom-select mt-15 @error('location') is-invalid @enderror">
+													<option value="0">Select a Location</option>
+													<option value="header" {{$targetMenu->location=="header"?"selected":''}}>Header</option>
+													<option value="footer" {{$targetMenu->location=="footer"?"selected":''}}>Footer</option>
+												</select>
+												@error('location') {{ $message }} @enderror
+											</div>
+										</div>
+									</div>
 								</div>
-								@enderror
-							</div>
 						</div>
+						<button class="btn btn-primary float-right"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update</button>
 					</div>
-					<div class="tile-footer">
-						<button class="btn btn-primary" type="submit">
-							<i class="fa fa-fw fa-lg fa-check-circle"></i>Update Category
-						</button>
-						&nbsp;&nbsp;&nbsp;
-						<a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
-							<i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel
-						</a>
-						
-					</div>
-				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </div>
 @endsection
