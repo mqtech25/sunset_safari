@@ -13,7 +13,7 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-3 col-xs-3">
 						<div id="logo_home">
-							<h1><a href="/" title="Sunset Safari Travel">Sunset Safari Travel&amp; More</a></h1>
+							<h1><a href="{{route('site.home')}}" title="Sunset Safari Travel">Sunset Safari Travel&amp; More</a></h1>
 						</div>
 					</div>
 					<nav class="col-md-9 col-sm-9 col-xs-9">

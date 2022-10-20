@@ -50,22 +50,22 @@
 									</div>
 									<label for="location" class="control-label"> Location <span class="m-l-5 text-danger"> *</span></label>
 									<div class="form-row">
-										@foreach ($locations as $location)
+										{{-- @foreach ($locations as $location) --}}
 										<div class="form-group mr-2 mb-0">
 											<div class="form-check">
 												<label for="header" class="form-check-label">
-													<input type="checkbox" class="form-check-input" id="header" name="location[]" value="header" {{($location =='header')?"checked":""}} >Show in Header
+													<input type="checkbox" class="form-check-input" id="header" name="location[]" value="header" {{(in_array('header',$locations))?"checked":""}} >Show in Header
 												</label>
 											</div>
 										</div>
 										<div class="form-group  mb-0">
 											<div class="form-check">
 												<label for="footer" class="form-check-label">
-													<input type="checkbox" class="form-check-input" id="footer" name="location[]" value="footer" {{($location =='footer')?"checked":""}}>Show in Footer
+													<input type="checkbox" class="form-check-input" id="footer" name="location[]" value="footer" {{(in_array('footer',$locations))?"checked":""}}>Show in Footer
 												</label>
 											</div>
 										</div>
-										@endforeach
+										{{-- @endforeach --}}
 									</div>
 									<p class="text-danger">@error('location') {{ $message }} @enderror</p>
 								</div>

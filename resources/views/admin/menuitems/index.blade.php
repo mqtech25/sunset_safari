@@ -1,11 +1,11 @@
 @extends('admin.app')
-@section('title')  @endsection
+@section('title') {{ $pageTitle}}@endsection
 @section('content')
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-sitemap mr-2"></i>Menu Items</h1>
-		<p>  </p>
+		<h1><i class="fa fa-sitemap mr-2"></i>{{ $pageTitle}}</h1>
+		<p> {{ $subTitle }} </p>
 	</div>
 	<a href="{{ route('admin.menuitems.create') }}" class="btn btn-primary pull-right">Create New Item</a>
 </div>
@@ -21,28 +21,25 @@
 						<tr>
 							<th class="text-center"> # </th>
 							<th class="text-center"> Title </th>
-							<th class="text-center"> Parent </th>
-							<th class="text-center"> Page Slug </th>
+							<th class="text-center"> Slug </th>
 							<th class="text-center"> Created At </th>
 							<th class="text-center"> Updated At </th>
 							<th style="width: 100px; min-width: 100px;" class="text-center text-danger"><i class="fa fa-bolt"></i></th>
 						</tr>
 					</thead>
 					<tbody>
+						@foreach ($menuItems as $item)
 						<tr>
-							<td class="text-center">2</td>
-							<td class="text-center">Game</td>
+							<td class="text-center">{{$item->id}}</td>
+							<td class="text-center">{{$item->title}}</td>
 							<td class="text-center">
-								<span class="badge badge-success">Home</span>
+								<span class="badge badge-success">{{$item->page_slug}}</span>
 							</td>
 							<td class="text-center">
-								<span class="badge badge-success">Sub page link</span>
+								{{$item->created_at}} 
 							</td>
 							<td class="text-center">
-								Time 
-							</td>
-							<td class="text-center">
-								Time 
+								{{$item->updated_at}} 
 							</td>
 							<td class="text-center">
 								<div class="btn-group" role="group" aria-label="Second group">
@@ -51,6 +48,7 @@
 								</div>
 							</td>
 						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>

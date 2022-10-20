@@ -2,8 +2,8 @@
 namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
-use App\Contracts\MenuContract;
-use App\Models\Menu;
+use App\Contracts\MenuItemContract;
+use App\Models\MenuItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -11,16 +11,16 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Http\UploadedFile;
 use App\Traits\UploadAble;
 
-class MenuRepository extends BaseRepository implements MenuContract{
+class MenuItemRepository extends BaseRepository implements MenuItemContract{
 
 	use UploadAble;
 
 	/**
-	* MenuRepository constructor
-	* @param Menu $model
+	* MenuItemRepository constructor
+	* @param MenuItem $model
 	*/
-	public function __construct(Menu $model){
-		\Log::info("Req=Repositories/MenuRepository@__construct called");
+	public function __construct(MenuItem $model){
+		\Log::info("Req=Repositories/MenuItemRepository@__construct called");
 		Parent::__construct($model);
 		$this->model = $model;
 	}
@@ -31,8 +31,8 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @param array $columns
 	* @return mixed
 	*/
-	public function listMenu(string $order = 'id', string $sort ='desc', array $columns = ['*']){
-		\Log::info("Req=Repositories/MenuRepository@listMenu Called");
+	public function listMenuItems(string $order = 'id', string $sort ='desc', array $columns = ['*']){
+		\Log::info("Req=Repositories/MenuItemRepository@listMenuItems Called");
 		return $this->all($columns, $order, $sort);
 	}
 
@@ -42,7 +42,7 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @throws ModelNotFoundException
 	*/
 	public function findMenuById(int $id){
-		\Log::info("Req=Repositories/MenuRepository@findMenuById Called");
+		\Log::info("Req=Repositories/MenuItemRepository@findMenuById Called");
 		try{
 			return $this->findOneOrFail($id);
 		}catch (ModelNotFoundException $e){
@@ -52,10 +52,10 @@ class MenuRepository extends BaseRepository implements MenuContract{
 
 	/**
 	* @param array $params
-	* @return Menu|mixed
+	* @return MenuItem|mixed
 	*/
 	public function createMenu(array $params){
-		\Log::info("Req=Repositories/MenuRepository@createMenu Called");
+		\Log::info("Req=Repositories/MenuItemRepository@createMenu Called");
 		
 		try{
 			$collection = collect($params);
@@ -83,7 +83,7 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @return mixed
 	*/
 	public function updateMenu(array $params){
-		\Log::info("Req=Repositories/MenuRepository@updateMenu Called");
+		\Log::info("Req=Repositories/MenuItemRepository@updateMenu Called");
 		$menu = $this->findMenuById($params['id']);
 
 		$collection = collect($params)->except('_token');
@@ -99,7 +99,7 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	* @return bool|mixed
 	*/
 	public function deleteMenu($id){
-		\Log::info("Req=MenuRepository@deleteMenu Called");
+		\Log::info("Req=MenuItemRepository@deleteMenu Called");
 		$menu = $this->findMenuById($id);
 		// if($menu->children->count()>0)
 		// {

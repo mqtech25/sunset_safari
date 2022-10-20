@@ -62,13 +62,11 @@ class CreatemenuController extends BaseController
 		\Log::info("Req=CreatemenuController@store called");
 		$this->validate(
 			$request,[
-				'title' => 'required|max:191',
-				'status'=> 'required|not_in:0',
-				'location' => ['required', 'array'],
+				'title' => 'required|max:191'
 			]);
 		$params =$request->except('_token');
-	
 		$menu= $this->menuRepository->createMenu($params);
+		
 		if (!$menu) {
 			return $this->responseRedirectBack('Error occurred while creating menu or Menu already exists','error',true,true);
 		}
