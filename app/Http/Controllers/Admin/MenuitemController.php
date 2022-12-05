@@ -52,8 +52,15 @@ class MenuitemController extends BaseController
 		// $categories = $this->categoryRepository->treeList();
 		$this->setPageTitle('Menu Item', 'Create Menu Item');
         // $routes = collect(\Route::getRoutes())->map(function ($route) { return $route->name(); });
-        $routeCollection = Route::getRoutes()->get();
-		return view('admin.menuitems.create',compact('menu','routeCollection'));
+        $routeCollection = Route::getRoutes();
+		$siteroute=[];
+		    foreach ($routeCollection as $value) {
+         if(str_starts_with($value->uri(),"sunsetsafari")){
+			$siteroute[]=$value->uri();
+		 }
+     }
+		dd($siteroute);
+		return view('admin.menuitems.create',compact('menu','siteroute'));
 	}
 	/**
 	* @param Request $request
