@@ -54,7 +54,7 @@ class MenuItemRepository extends BaseRepository implements MenuItemContract{
 	* @param array $params
 	* @return MenuItem|mixed
 	*/
-	public function createMenu(array $params){
+	public function createMenuItem(array $params){
 		\Log::info("Req=Repositories/MenuItemRepository@createMenu Called");
 		
 		try{
@@ -64,14 +64,14 @@ class MenuItemRepository extends BaseRepository implements MenuItemContract{
 			// $merge = $collection->merge(compact('location'));
 			// $menu = new Menu($merge->all());
 			// $alreadyExists = Menu::where('title', $menu->title)->first();
-			$menu = new Menu($collection->all());
-			$title=$menu->title;
-			$alreadyExists = Menu::where('title', $title)->first();
+			$menuitem = new MenuItem($collection->all());
+			$title=$menuitem->title;
+			$alreadyExists = MenuItem::where('title', $title)->first();
 			if($alreadyExists != null){
 				return false;
 			}
-			$menu->save();
-			return $menu;
+			$menuitem->save();
+			return $menuitem;
 		}catch(QueryException $exception){
 			throw new InvalidArgumentException($exception->getMessage());
 			

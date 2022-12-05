@@ -12,7 +12,6 @@ class MenuItem extends Model
     // fillable
     protected $fillable = [
         'title',
-        'page_slug',
-        'page_id ',
+        'slug',
     ];
 }

@@ -53,14 +53,14 @@ class MenuitemController extends BaseController
 		$this->setPageTitle('Menu Item', 'Create Menu Item');
         // $routes = collect(\Route::getRoutes())->map(function ($route) { return $route->name(); });
         $routeCollection = Route::getRoutes();
-		$siteroute=[];
-		    foreach ($routeCollection as $value) {
-         if(str_starts_with($value->uri(),"sunsetsafari")){
-			$siteroute[]=$value->uri();
-		 }
-     }
-		dd($siteroute);
-		return view('admin.menuitems.create',compact('menu','siteroute'));
+	// 	$siteroute=[];
+	// 	    foreach ($routeCollection as $value) {
+    //      if(str_starts_with($value->uri(),"sunsetsafari")){
+	// 		$siteroute[]=$value->uri();
+	// 	 }
+    //  }
+	// 	dd($siteroute);
+		return view('admin.menuitems.create',compact('menu','routeCollection'));
 	}
 	/**
 	* @param Request $request
@@ -73,15 +73,16 @@ class MenuitemController extends BaseController
 		\Log::info("Req=MenuitemController@store called");
 		$this->validate(
 			$request,[
-				'title' => 'required|max:191'
+				'title' => 'required|max:191',
+				'slug' => 'required|not_in:0'
 			]);
 		$params =$request->except('_token');
-		$menu= $this->menuItemRepository->createMenu($params);
+		$menuItem= $this->menuItemRepository->createMenuItem($params);
 		
-		if (!$menu) {
-			return $this->responseRedirectBack('Error occurred while creating menu or Menu already exists','error',true,true);
+		if (!$menuItem) {
+			return $this->responseRedirectBack('Error occurred while creating menu item or Menu item already exists','error',true,true);
 		}
-		return $this->responseRedirect('admin.createmenu.index','Menu add successfully','success',false,false);
+		return $this->responseRedirect('admin.menuitems.index','Menu add successfully','success',false,false);
 	}
 	/**
 	* @param int $id

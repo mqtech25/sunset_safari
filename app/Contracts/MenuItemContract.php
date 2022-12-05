@@ -23,7 +23,7 @@ interface MenuItemContract{
 	/**
 	* @param array $params
 	*/
-	public function createMenu(array $params);
+	public function createMenuItem(array $params);
 
 	/**
 	* @param array $params

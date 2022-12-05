@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require 'admin.php';
-Route::group(['prefix'=>'sunsetsafari'],function(){
 	Route::get('/', 'Site\SiteController@homePage')->name('site.home');
 Route::get('/view_detail', 'Site\SiteController@offerDetail')->name('site.detail');
-});
 
 // Route::get('/', 'Site\SiteController@homePage')->name('home');
 Route::get('/blog', 'Site\SiteController@blogPage')->name('blog');

@@ -33,7 +33,7 @@
 							<td class="text-center">{{$item->id}}</td>
 							<td class="text-center">{{$item->title}}</td>
 							<td class="text-center">
-								<span class="badge badge-success">{{$item->page_slug}}</span>
+								<span class="badge badge-success">{{$item->slug}}</span>
 							</td>
 							<td class="text-center">
 								{{$item->created_at}} 
