@@ -30,12 +30,12 @@
 			</a>
 		</li>
 		
-		<li class="treeview"><a class="app-menu__item {{ Route::currentRouteName() == 'admin.createmenu.index' ? 'active' : '' }} " href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">Menu</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+		<li class="treeview"><a class="app-menu__item {{ Route::currentRouteName() == 'admin.createmenu.index' ? 'active' : '' }} " href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">Navigation</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li>
 				<a href="{{ route('admin.createmenu.index') }}" rel="noopener" class="treeview-item {{ Route::currentRouteName() == 'admin.createmenu.index' ? 'active' : '' }}">
 					<i class="app-menu__icon fa fa-sliders"></i>
-					<span class="app-menu__table">Create Menu</span>
+					<span class="app-menu__table">Menu</span>
 				</a>
 			</li>
 			<li>

@@ -33,8 +33,8 @@ use App\Repositories\PostRepository;
 use App\Contracts\MenuContract;
 use App\Repositories\MenuRepository;
 
-use App\Contracts\MenuItemContract;
-use App\Repositories\MenuItemRepository;
+use App\Contracts\ItemContract;
+use App\Repositories\ItemRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
@@ -50,8 +50,8 @@ class RepositoryServiceProvider extends ServiceProvider
         PageContract::class            =>  PageRepository::class,
         CouponContract::class            =>  CouponRepository::class,
         PostContract::class            =>  PostRepository::class,
-        MenuContract::class            =>  MenuRepository::class,
-        MenuItemContract::class        => MenuItemRepository::class
+        MenuContract::class          =>  MenuRepository::class,
+        ItemContract::class          =>  ItemRepository::class,
     ];
     
     /**

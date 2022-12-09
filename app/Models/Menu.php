@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Item;
 
 class Menu extends Model
 {
-    // protect
-    protected $table='menu';
+    protected $table = 'menu';
 
-    // fillable
+	protected $fillable = [
+		'id', 'menu_title', 'location', 'tab_status','created_at', 'updated_at',
+	];
 
-    protected $fillable = [
-        'title',
-        'items',
-    ];
+	public function items()
+	{
+		# code...
+		return $this->belongsToMany(Item::class,'menu_items','menuid','itemid');
+	}
 }
