@@ -30,16 +30,16 @@
 			</a>
 		</li>
 		
-		<li class="treeview"><a class="app-menu__item {{ Route::currentRouteName() == 'admin.createmenu.index' ? 'active' : '' }} " href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">Navigation</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+		<li class="treeview"><a class="app-menu__item {{ Route::currentRouteName() == 'admin.menu.index' ? 'active' : '' }} " href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-bars"></i><span class="app-menu__label">Navigation</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li>
-				<a href="{{ route('admin.createmenu.index') }}" rel="noopener" class="treeview-item {{ Route::currentRouteName() == 'admin.createmenu.index' ? 'active' : '' }}">
+				<a href="{{ route('admin.menu.index') }}" rel="noopener" class="treeview-item {{ Route::currentRouteName() == 'admin.menu.index' ? 'active' : '' }}">
 					<i class="app-menu__icon fa fa-sliders"></i>
 					<span class="app-menu__table">Menu</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{ route('admin.menuitems.index') }}" rel="noopener" class="treeview-item {{ Route::currentRouteName() == 'admin.menuitems.index' ? 'active' : '' }}">
+				<a href="{{ route('admin.item.index') }}" rel="noopener" class="treeview-item {{ Route::currentRouteName() == 'admin.item.index' ? 'active' : '' }}">
 					<i class="app-menu__icon fa fa-sliders"></i>
 					<span class="app-menu__table">Menu Items</span>
 				</a>
