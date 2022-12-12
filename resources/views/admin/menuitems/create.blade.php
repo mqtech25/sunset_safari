@@ -35,7 +35,38 @@
                                 value="{{ old('menu_title', isset($menu) ? $menu->name : '' ) }}"
                                 class="form-control">
                         </div>
-                        <div class="form-group">
+                        <div class="form-check" data-toggle="collapse" data-target="#megaMenuCheck" aria-expanded="false" aria-controls="megaMenuCheck">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              MegaMenu Item
+                            </label>
+                            <br>
+                            <small>Checked If it's a MegaMenu </small>
+                          </div>
+                          <div class="collapse" id="megaMenuCheck">
+                            <div class="card card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Item Description</label>
+                                            <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                            <img src="" id="megaMenuImg" class="img-fluid">
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="control-label">Item Image</label>
+                                            <input class="form-control" type="file" name="site_logo" onchange="loadFile(event,'megaMenuImg')">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>                          
+                        <div class="form-group mt-2">
                             <label for="parent" class="control-label">Parent</label>
                             <select name="parent" id="service-parent" class="form-control">
                                 
@@ -140,6 +171,10 @@
 
 
 <script>
+loadFile = function(event, id) {
+    var output = document.getElementById(id);
+    output.src = URL.createObjectURL(event.target.files[0]);
+};
 //Page Table Row Delete
 $("#sampleTable").on("click", "#delete", function() {
    $(this).parents("tr").remove();
@@ -169,6 +204,7 @@ function addPage(){
 Dropzone.autoDiscover = false;
 
 $(document).ready(function() {
+    
     var keywords = '';
     $("#service-meta-keyword").tagsinput('add', keywords);
 
@@ -191,29 +227,29 @@ $(document).ready(function() {
             cache: true
         }
     });
-    CKEDITOR.replace('tab_content', {
-        filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-    });
+    // CKEDITOR.replace('tab_content', {
+    //     filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+    //     filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+    //     filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+    //     filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    // });
 
     // l
 
 
-    myDropzone.on('queuecomplete', function(file) {
-        window.location.reload();
-        showNotification('Completed', 'All product images uploaded', 'success', 'fa-check');
-    });
+    // myDropzone.on('queuecomplete', function(file) {
+    //     window.location.reload();
+    //     showNotification('Completed', 'All product images uploaded', 'success', 'fa-check');
+    // });
 
 
-    $('#uploadButton').click(function() {
-        if (myDropzone.files.length === 0) {
-            showNotification('Error', 'Please select files to upload.', 'danger', 'fa-close');
-        } else {
-            myDropzone.processQueue();
-        }
-    });
+    // $('#uploadButton').click(function() {
+    //     if (myDropzone.files.length === 0) {
+    //         showNotification('Error', 'Please select files to upload.', 'danger', 'fa-close');
+    //     } else {
+    //         myDropzone.processQueue();
+    //     }
+    // });
 
 
     function showNotification(title, message, type, icon) {
