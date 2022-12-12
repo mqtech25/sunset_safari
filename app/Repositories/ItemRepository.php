@@ -56,7 +56,6 @@ class ItemRepository extends BaseRepository implements ItemContract{
 			// $icon = $imagePath;
 			
 			// $merge = $colleciton->merge(compact('service_status','icon'));
-			
 			$item = Item::create($dataArray);
 			return $item;
 			

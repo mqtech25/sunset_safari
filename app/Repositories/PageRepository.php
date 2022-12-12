@@ -3,6 +3,9 @@ namespace App\Repositories;
 
 use App\Contracts\PageContract;
 use App\Models\Page;
+use App\Models\Item;
+use App\Models\Menu;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -110,8 +113,14 @@ class PageRepository extends BaseRepository implements PageContract{
 	 */
 	public function deletePage($id){
 		\Log::info("Req=PageRepository@deletePage called");
-
 		$page = $this->findPageById($id);
+		$items = Item::where('slug',$page->page_slug)->get('id')->first();
+		$items_id = json_decode($items);
+		if(isset($items_id)){
+			$menu_items = DB::table('menu_items')->where('itemid',$items_id->id);
+			$menu_items->delete();
+			$items->delete();
+		}
 		$page->delete();
 		return $page;
 	}

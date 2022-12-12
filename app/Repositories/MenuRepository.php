@@ -91,7 +91,7 @@ class MenuRepository extends BaseRepository implements MenuContract{
 	public function updateMenu($params){
 		$menuUpdate = $this->findMenuById($params['id']);
 		$colleciton = collect($params)->except('_token');
-		$menuUpdate->update($colleciton->all());	
+		$menuUpdate->update($colleciton->all());
 		if(isset($params['menu_items'])){
 			$menuUpdate->items()->syncWithoutDetaching($params['menu_items']);
 		}
